@@ -1,4 +1,4 @@
 Pillow>=3.2.0,<4.0.0
 python-magic
 Flask
-mock
+ConfigArgParse>=0.13.0
