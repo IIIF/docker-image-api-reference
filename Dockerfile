@@ -11,6 +11,6 @@ RUN mv iiif-develop iiif
 WORKDIR /app/iiif/testimages
 RUN rm -rf *
 ADD images/* /app/iiif/testimages/
-ADD iiif_testserver.cfg /app/iiif/
+ADD iiif_reference_server.cfg /app/iiif/
 
-CMD [ "iiif/iiif_testserver.wsgi" ]
+CMD [ "iiif/iiif_reference_server.wsgi" ]
