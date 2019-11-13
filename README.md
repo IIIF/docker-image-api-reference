@@ -9,6 +9,7 @@ Note the URLs for accessing IIIF images is as follows:
  * http://localhost:8000/api/image/1.1/example/reference/67352ccc-d1b0-11e1-89ae-279075081939/full/full/0/native.jpg
  * http://localhost:8000/api/image/2.0/example/reference/67352ccc-d1b0-11e1-89ae-279075081939/full/full/0/default.jpg
  * http://localhost:8000/api/image/2.1/example/reference/67352ccc-d1b0-11e1-89ae-279075081939/full/full/0/default.jpg
+ * http://localhost:8000/api/image/3.0/example/reference/67352ccc-d1b0-11e1-89ae-279075081939/full/max/0/default.jpg
 
 and the directory for storing images is:
 
