@@ -17,6 +17,7 @@ def syncS3():
     bucketcontents = s3client.Bucket('iiif-fixtures').objects.filter(Prefix='images')
     localDir = './iiif/testimages'
     log = ''
+    print('Downloading data from S3')
     for s3fileinfo in bucketcontents:
         if not s3fileinfo.key.endswith('/metadata.json') and not s3fileinfo.key.endswith('/'):
             localfilename = '{}/{}'.format(localDir, shorternFilename(s3fileinfo.key))
@@ -28,12 +29,15 @@ def syncS3():
                     # download
                     download = True
                     log += '<li>Updating: {} from {}</li>'.format(localfilename, s3fileinfo.key)
+                    print ('Updating: {} from {}'.format(s3fileinfo.key, localfilename))
             else:
                 download = True
                 log += '<li>Downloading: {} from {}</li>'.format(s3fileinfo.key, localfilename)
+                print ('Downloading: {} from {}'.format(s3fileinfo.key, localfilename))
                 
             if download:
                 s3client.meta.client.download_file('iiif-fixtures', s3fileinfo.key, localfilename)
+    print('Finished download from s3')
     return '<html><body><h1>Sync actions:</h1><ul>{}</ul></body></html>'.format(log)
 
 def timestamp(filepath):
