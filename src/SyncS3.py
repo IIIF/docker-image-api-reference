@@ -28,12 +28,12 @@ def syncS3():
                 if localLastMod < s3fileinfo.last_modified:
                     # download
                     download = True
-                    log += '<li>Updating: {} from {}</li>'.format(localfilename, s3fileinfo.key)
-                    print ('Updating: {} from {}'.format(s3fileinfo.key, localfilename))
+                    log += '<li>Updating: {} to {}</li>'.format(localfilename, s3fileinfo.key)
+                    print ('Updating: {} to {}'.format(s3fileinfo.key, localfilename))
             else:
                 download = True
-                log += '<li>Downloading: {} from {}</li>'.format(s3fileinfo.key, localfilename)
-                print ('Downloading: {} from {}'.format(s3fileinfo.key, localfilename))
+                log += '<li>Downloading: {} to {}</li>'.format(s3fileinfo.key, localfilename)
+                print ('Downloading: {} to {}'.format(s3fileinfo.key, localfilename))
                 
             if download:
                 s3client.meta.client.download_file('iiif-fixtures', s3fileinfo.key, localfilename)
@@ -52,6 +52,7 @@ def shorternFilename(filepath):
 
 def loadApp(app):
     app.add_url_rule('/sync.html', 'SyncS3', syncS3, methods=['GET'])
+    syncS3()
     
 localtimezone = get_localzone()
 
