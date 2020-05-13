@@ -15,6 +15,12 @@ RUN pip install iiif_validator coveralls pep8 pep257 testfixtures boto3 pytz tzl
 #RUN python setup.py test
 # Increase amount of connections
 RUN sed -e "s/#Include conf\/extra\/httpd-mpm.conf/Include conf\/extra\/httpd-mpm.conf/g" -i /usr/local/apache/conf/httpd.conf
+RUN sed -e "s/StartServers             3/StartServers             2/g" -i /usr/local/apache/conf/extra/httpd-mpm.conf
+RUN sed -e "s/MinSpareThreads         75/MinSpareThreads         5/g" -i /usr/local/apache/conf/extra/httpd-mpm.conf
+RUN sed -e "s/MaxSpareThreads        250/MaxSpareThreads 10/g" -i /usr/local/apache/conf/extra/httpd-mpm.conf
+RUN sed -e "s/MaxConnectionsPerChild   0/MaxConnectionsPerChild   500/g" -i /usr/local/apache/conf/extra/httpd-mpm.conf
+RUN sed -e "s/MaxRequestWorkers      400/MaxRequestWorkers      200/g" -i /usr/local/apache/conf/extra/httpd-mpm.conf
+RUN sed '/ThreadsPerChild         25/ a     ListenBackLog   20' -i /usr/local/apache/conf/extra/httpd-mpm.conf
 
 WORKDIR /app/iiif/testimages
 RUN rm -rf *
