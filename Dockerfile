@@ -13,6 +13,8 @@ RUN apt-get -y install libmagic-dev libwebp-dev
 RUN pip install iiif_validator coveralls pep8 pep257 testfixtures boto3 pytz tzlocal
 #RUN python setup.py install
 #RUN python setup.py test
+# Increase amount of connections
+RUN sed -e "s/#Include conf\/extra\/httpd-mpm.conf/Include conf\/extra\/httpd-mpm.conf/g" -i /usr/local/apache/conf/httpd.conf
 
 WORKDIR /app/iiif/testimages
 RUN rm -rf *
