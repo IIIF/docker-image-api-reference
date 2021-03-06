@@ -4,9 +4,13 @@ RUN apt-get update
 RUN apt-get -y install unzip
 
 WORKDIR /app
-RUN curl -LO https://github.com/zimeon/iiif/archive/master.zip
-RUN unzip master
-RUN mv iiif-master iiif
+#RUN curl -LO https://github.com/zimeon/iiif/archive/master.zip
+#RUN unzip master
+#RUN mv iiif-master iiif
+RUN curl -LO https://github.com/glenrobson/iiif/archive/add_scheme_to_config.zip
+RUN ls -l
+RUN unzip add_scheme_to_config
+RUN mv iiif-add_scheme_to_config iiif
 
 # test with validator
 RUN apt-get -y install libmagic-dev libwebp-dev
